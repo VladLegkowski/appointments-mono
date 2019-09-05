@@ -1,0 +1,12 @@
+{
+  "name": "appointments-mono",
+  "version": "1.0.0",
+  "description": "Appointments application with registration and authentication",
+  "main": "index.js",
+  "author": "Vlad Legkovskis",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
