@@ -1,0 +1,56 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+lerna-debug.log
+
+# editor files
+# https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+# User-specific stuff from JetBrains:
+.idea/*
+package-lock.json
+
+# Dependency directories
+node_modules
+coverage
+
+# release folder
+dist
+*.tar.gz
+
+# IDE and mac files
+.vscode
+.DS_Store
+
+# Storybook temp files
+.storybook
+!packages/tools/storybook/.storybook
+
+# Cypress Videos
+cypress/videos/*
+*.mp4
+
+# Cypress screenshot
+cypress/screenshots/*
+
+# merge error logs
+*.rej
+
+# Visual regression
+packages/test-harness/build-yourodds/visual-regression/backstop_data/bitmaps_test
+packages/test-harness/build-yourodds/visual-regression/test/cypress/screenshots
+packages/test-harness/build-yourodds/visual-regression/backstop_data/html_report
+
+#random flow stuff
+*.flow
+
+#component tests generated files
+dataService-log.txt
+mockserver-log.txt
+packages/test-harness/always-on/component-test/cypress.json
+packages/test-harness/always-on/component-test/cypress/*
+packages/test-harness/build-yourodds/component-test/cypress.json
+packages/test-harness/build-yourodds/component-test/cypress/*
+packages/test-harness/always-on/component-test/test/cypress/screenshots/*
+packages/test-harness/build-yourodds/component-test/test/cypress/screenshots/*
+renderServer-log.txt

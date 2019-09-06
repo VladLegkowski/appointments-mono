@@ -1,42 +1,43 @@
 const { GraphQLServer } = require('graphql-yoga');
-const remove = require('lodash.remove');
-
-let users = [{
-  id: 'user-0',
-  name: 'Juan',
-  surname: 'Torres'
-}];
-
-let idCount = users.length;
+const { prisma } = require('./generated/prisma-client');
 
 const resolvers = {
+
   Query: {
-    info: (_, {param}) => `Appointment ${param ? param : ''}`,
-    feed: () => users,
-    user: (_, {id}) => users.find(user => user.id === id)
+
+    info: (_, { param }) => `Appointment ${param || ''}`,
+
+    users: (root, args, context) => {
+      return context.prisma.users()
+    },
+
+    user: async (root, args) => {
+      return prisma.user({ id: args.id });
+
+    }
   },
   Mutation: {
-    createUser: (parent, args) => {
-      const user = {
-        id: `user-${idCount++}`,
+
+    createUser: (root, args, context) => {
+      return context.prisma.createUser({
         name: args.name,
         surname: args.surname,
-      };
-      users.push(user);
-      return user
+      })
     },
-    updateUserInfo: (parent, arg) => {
-      const userToUpdate = users.find(user => user.id === arg.id);
-      return {
-        ...userToUpdate,
-        name: arg.name || userToUpdate.name,
-        surname: arg.surname || userToUpdate.surname,
-      };
-    },
-    deleteUser: (parent, arg) => {
-      remove(users, {
-        id: arg.id
+
+    updateUser: async (parent, args, context) => {
+      return context.prisma.updateUser({
+        where: { id: args.id },
+        data: {
+          email: args.email,
+          name: args.name,
+          surname: args.surname
+        }
       });
+    },
+
+    deleteUser: async (root, args, context) => {
+      return await context.prisma.deleteUser({ id: args.id });
     }
   }
 };
@@ -44,6 +45,7 @@ const resolvers = {
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
+  context: { prisma },
 });
 
-server.start(() => console.log(`Running on 4000`));
+server.start(() => console.log('Running on 4000'));

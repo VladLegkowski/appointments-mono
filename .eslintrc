@@ -1,0 +1,84 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": ["airbnb", "prettier"],
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "plugins": ["import", "flowtype"],
+  "rules": {
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ForInStatement",
+        "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+      },
+      {
+        "selector": "LabeledStatement",
+        "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+      },
+      {
+        "selector": "WithStatement",
+        "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+      }
+    ],
+    "complexity": [2, 8],
+    "flowtype/no-dupe-keys": 2,
+    "flowtype/no-weak-types": [1, {
+      "any": true,
+      "Object": false,
+      "Function": false
+    }],
+    "flowtype/define-flow-type": 1,
+    "flowtype/require-parameter-type": 1,
+    "flowtype/type-id-match": [
+      1,
+      "^([A-Z][A-Za-z0-9]+)+Type$"
+    ],
+    "flowtype/use-flow-type": 1,
+    "generator-star-spacing": [0],
+    "import/prefer-default-export": [0],
+    "indent": [2, 2],
+    "keyword-spacing": ["error", { "before": true }],
+    "max-len": [2, 120],
+    "new-cap": [2, { "capIsNewExceptions": ["Map", "List", "Record"] }],
+    "no-await-in-loop": [0],
+    "no-console": [0],
+    "no-duplicate-imports": [0],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+    "object-curly-spacing": [2, "always"],
+    "quotes": ["error", "single"],
+    "react/jsx-filename-extension": [0],
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-indent": [2, 2],
+    "react/prop-types": 0,
+    "react/require-default-props": 0,
+    "space-before-blocks": "error",
+    "space-in-parens": ["error", "never"],
+    "spaced-comment": [0],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+  },
+  "globals": {
+    "fetch": false,
+    "Iterator": true,
+    "Generator": true,
+    "browser": true,
+    "$": true,
+    "$$": true,
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"],
+        "paths": ["./src", "./src/main"]
+      }
+    },
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  }
+}

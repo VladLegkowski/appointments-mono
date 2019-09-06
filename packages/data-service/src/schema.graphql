@@ -1,13 +1,20 @@
 type Query {
     info(param: String!): String!
-    feed: [User!]!
+    users: [User!]!
     user(id: ID!): User
 }
 
 type Mutation {
     createUser(name: String!, surname: String!): User!
     deleteUser(id: ID!): User
-    updateUserInfo(id: ID!, name: String, surname: String) : User
+    updateUser(id: ID!, name: String, surname: String) : User
+    signup(email: String!, password: String!, name: String!, surname: String!): AuthPayload
+    login(email: String!, password: String!): AuthPayload
+}
+
+type AuthPayload {
+    token: String
+    user: User
 }
 
 type User {
