@@ -1,7 +1,8 @@
 # The HTTP endpoint for your Prisma API
 #endpoint: ''
 #endpoint: ''
-endpoint: https://eu1.prisma.sh/vlad-98d657/appointments-app/dev
+#endpoint: ''
+endpoint: https://eu1.prisma.sh/vlad-98d657/data-service/dev
 
 # Points to the file that contains your datamodel
 datamodel: datamodel.prisma
@@ -10,3 +11,7 @@ datamodel: datamodel.prisma
 generate:
   - generator: javascript-client
     output: ../src/generated/prisma-client
+
+hooks:
+  post-deploy:
+    - prisma generate
