@@ -38,6 +38,8 @@ function createUser(root, args, context) {
   return context.prisma.createUser({
     name: args.name,
     surname: args.surname,
+    email: args.email,
+    password: args.password,
   })
 }
 
